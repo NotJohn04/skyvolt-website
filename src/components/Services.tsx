@@ -1,4 +1,4 @@
-import { ImageWithFallback } from "./figma/ImageWithFallback.tsx";
+// import { ImageWithFallback } from "./figma/ImageWithFallback.tsx";
 import { Search, Target, PenTool, BarChart, Mail, Video } from "lucide-react";
 
 export function Services() {
@@ -36,16 +36,16 @@ export function Services() {
   ];
 
   return (
-    <section id="services" className="py-20 bg-white">
+    <section id="services" className="py-20 bg-background">
       <div className="container mx-auto px-4">
         <div className="text-center mb-16">
-          <div className="inline-block px-4 py-2 bg-orange-100 text-orange-600 rounded-full mb-4">
+          <div className="inline-block px-4 py-2 bg-brand-100 text-brand-600 rounded-full mb-4">
             Our Services
           </div>
-          <h2 className="text-gray-900 mb-4">
+          <h2 className="text-foreground mb-4">
             Everything You Need to Grow Your Solar Business
           </h2>
-          <p className="text-xl text-gray-600 max-w-2xl mx-auto">
+          <p className="text-lg text-ink-700 max-w-2xl mx-auto">
             Comprehensive digital marketing solutions designed specifically for the solar industry.
           </p>
         </div>
@@ -56,13 +56,13 @@ export function Services() {
             return (
               <div
                 key={index}
-                className="p-6 rounded-xl border border-gray-200 hover:border-orange-300 hover:shadow-lg transition-all group"
+                className="p-6 rounded-xl border border-border bg-card hover:border-brand-300/60 hover:shadow-[0_10px_30px_-10px_rgba(255,106,0,.25)] transition-all group"
               >
-                <div className="w-14 h-14 bg-gradient-to-br from-orange-500 to-orange-600 rounded-lg flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+                <div className="w-14 h-14 rounded-lg bg-gradient-to-br from-brand-500 to-brand-600 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
                   <Icon className="w-7 h-7 text-white" />
                 </div>
-                <h3 className="text-gray-900 mb-3">{service.title}</h3>
-                <p className="text-gray-600">{service.description}</p>
+                <h3 className="text-foreground mb-3">{service.title}</h3>
+                <p className="text-ink-700">{service.description}</p>
               </div>
             );
           })}

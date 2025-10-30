@@ -23,16 +23,16 @@ export function Results() {
   ];
 
   return (
-    <section id="results" className="py-20 bg-gradient-to-br from-orange-50 to-white">
+    <section id="results" className="py-20 bg-[radial-gradient(1000px_500px_at_80%_-10%,theme(colors.brand.400/.10),transparent_60%)]">
       <div className="container mx-auto px-4">
         <div className="text-center mb-16">
-          <div className="inline-block px-4 py-2 bg-orange-100 text-orange-600 rounded-full mb-4">
+          <div className="inline-block px-4 py-2 bg-brand-100 text-brand-600 rounded-full mb-4">
             Proven Results
           </div>
-          <h2 className="text-gray-900 mb-4">
+          <h2 className="text-foreground mb-4">
             Real Growth for Real Solar Companies
           </h2>
-          <p className="text-xl text-gray-600 max-w-2xl mx-auto">
+          <p className="text-lg text-ink-700 max-w-2xl mx-auto">
             See how we've helped solar companies like yours achieve remarkable results.
           </p>
         </div>
@@ -41,7 +41,7 @@ export function Results() {
           {caseStudies.map((study, index) => (
             <div
               key={index}
-              className="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow"
+              className="bg-card rounded-2xl overflow-hidden border border-border hover:border-brand-300/60 hover:shadow-[0_20px_50px_-20px_rgba(255,106,0,.25)] transition-all"
             >
               <div className="h-48 overflow-hidden">
                 <ImageWithFallback
@@ -51,9 +51,9 @@ export function Results() {
                 />
               </div>
               <div className="p-6">
-                <h3 className="text-gray-900 mb-2">{study.company}</h3>
-                <div className="text-2xl text-orange-600 mb-2">{study.metric}</div>
-                <p className="text-gray-600">{study.details}</p>
+                <h3 className="text-foreground mb-2">{study.company}</h3>
+                <div className="text-xl text-brand-600 mb-2">{study.metric}</div>
+                <p className="text-ink-700">{study.details}</p>
               </div>
             </div>
           ))}
