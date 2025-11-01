@@ -18,7 +18,8 @@ import raygosolar from "./components/partners/Untitled design (13).png";
 import AD from "./components/partners/Untitled design (14).png"
 import IPS from "./components/partners/logo_footer.png"
 import "./styles/fonts.css";
-
+import HumanoidSection from "./components/testingSection";
+import TestingSection from "./components/testingSection";
 
 export default function App() {
   return (
@@ -46,6 +47,7 @@ export default function App() {
       />
 
       <About />
+      <HumanoidSection />
       <section className="bg-[radial-gradient(1200px_600px_at_20%_0%,theme(colors.brand.400/.10),transparent_60%)]">
         <FeaturesSectionDemo />
       </section>
