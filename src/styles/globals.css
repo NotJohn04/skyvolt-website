@@ -122,6 +122,23 @@
     --font-sans: "Poppins", ui-sans-serif, system-ui, -apple-system, "Segoe UI",
                 Roboto, "Helvetica Neue", Arial, "Noto Sans", "Apple Color Emoji",
                 "Segoe UI Emoji", "Segoe UI Symbol";
+
+
+    
+}
+
+
+@theme inline {
+  --animate-move: move 5s linear infinite;
+ 
+  @keyframes move {
+    0% {
+      transform: translateX(-200px);
+    }
+    100% {
+      transform: translateX(200px);
+    }
+  }
 }
 
 /* Small helpers you can reuse */
@@ -213,3 +230,5 @@ body::before{
 html {
   font-size: var(--font-size);
 }
+
+
