@@ -2,8 +2,7 @@
 import * as React from "react"
 import { motion, AnimatePresence } from "framer-motion"
 import type { Variants } from "framer-motion"
-import logo from "./images/SVS.png" // keep your path
-
+import logo from "./images/SVS.png"
 
 const NAV = [
   { href: "#services", label: "Services" },
@@ -12,12 +11,11 @@ const NAV = [
   { href: "#contact",  label: "Contact" },
 ]
 
-// Staggered items (white text)
+// stagger for list
 const listVariants: Variants = {
   open:  { transition: { delayChildren: 0.12, staggerChildren: 0.06 } },
   closed:{ transition: { staggerChildren: 0.04, staggerDirection: -1 } },
 }
-
 const itemVariants: Variants = {
   open:   { y: 0,  opacity: 1, transition: { type: "spring", stiffness: 900, damping: 40 } },
   closed: { y: 10, opacity: 0, transition: { type: "spring", stiffness: 900, damping: 40 } },
@@ -26,7 +24,7 @@ const itemVariants: Variants = {
 export function Header() {
   const [isOpen, setIsOpen] = React.useState(false)
 
-  // ▼ NEW: drop-down at top, stick to top on scroll
+  // drop a bit when at page top
   const [scrolled, setScrolled] = React.useState(false)
   React.useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 8)
@@ -39,40 +37,45 @@ export function Header() {
     <header
       className={[
         "fixed inset-x-0 z-[60] transition-[top] duration-300 ease-out",
-        scrolled ? "top-5" : "top-15", // ▼ NEW: lower when at top
+        scrolled ? "top-5" : "top-18",
       ].join(" ")}
     >
       <div className="container mx-auto px-4">
-        <nav className="flex items-center gap-3">
-          {/* Menu button — fades out while open */}
+        <nav className="flex items-center">
+          {/* ONE PILL: logo left, hamburger right — click anywhere to open */}
           <motion.button
             aria-label="Open menu"
             onClick={() => setIsOpen(true)}
             initial={false}
-            animate={{ opacity: isOpen ? 0 : 1, scale: isOpen ? 0.95 : 1 }}
+            whileHover={{ scale: 1.01 }}
+            whileTap={{ scale: 0.99 }}
+            animate={{ opacity: isOpen ? 0 : 1 }}
             transition={{ duration: 0.18 }}
             style={{ pointerEvents: isOpen ? "none" : "auto" }}
-            className="grid size-12 place-items-center rounded-full border border-white/10 bg-white/8 backdrop-blur-md hover:bg-white/12 text-white"
+            className="inline-flex h-16 items-center justify-between gap-3 rounded-full
+                       border border-white/10 bg-white/8 px-3 pr-2 text-white backdrop-blur-md
+                       hover:bg-white/12 transition-colors w-[min(300px,92vw)]"
           >
-            {/* hamburger */}
-            <svg width="24" height="24" viewBox="0 0 24 24">
-              <path d="M3 6 H21"  stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
-              <path d="M3 12 H21" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
-              <path d="M3 18 H21" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
-            </svg>
-          </motion.button>
+            {/* left: brand */}
+            <div className="flex items-center gap-3">
+              <span className="h-12 w-12 rounded-full grid place-items-center overflow-hidden">
+                <img src={logo} alt="Skyvolt Solar" className="h-10 w-10 object-contain" />
+              </span>
+              {/* If you didn't extend Tailwind with font-bernier, use font-["Bernier"] */}
+              <span className="font-bernier uppercase leading-none text-[18px] md:text-[26px] tracking-[.06em] text-[#ff6a00]">
+                Skyvolt Solar
+              </span>
+            </div>
 
-          {/* Brand pill (logo bigger, same height as menu button) */}
-          <a
-            href="/"
-            className="inline-flex items-center gap-3 rounded-full border border-white/10 bg-white/8 pl-2 pr-4 py-1.5 text-white backdrop-blur-md hover:bg-white/12 transition-colors"
-          >
-            {/* 48×48 like the menu button */}
-            <span className="h-14 w-14 px-2 rounded-full grid place-items-center overflow-hidden">
-              <img src={logo} alt="Skyvolt Solar" className="h-10 w-10 object-contain" />
+            {/* right: hamburger inside the pill */}
+            <span className="grid size-10 place-items-center rounded-full border border-white/10 bg-white/8">
+              <svg width="22" height="22" viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M3 6 H21"  stroke="#ff6a00" strokeWidth="2" strokeLinecap="round" />
+                <path d="M3 12 H21" stroke="#ff6a00" strokeWidth="2" strokeLinecap="round" />
+                <path d="M3 18 H21" stroke="#ff6a00" strokeWidth="2" strokeLinecap="round" />
+              </svg>
             </span>
-            <span className="font-bernier uppercase leading-none text-[18px] md:text-[26px] text-[#ff6a00] pr-2">Skyvolt Solar</span>
-          </a>
+          </motion.button>
         </nav>
       </div>
 
@@ -80,7 +83,7 @@ export function Header() {
       <AnimatePresence>
         {isOpen && (
           <>
-            {/* Dim backdrop */}
+            {/* backdrop */}
             <motion.div
               key="scrim"
               className="fixed inset-0 z-[70] bg-black/40 backdrop-blur-sm"
@@ -90,21 +93,22 @@ export function Header() {
               onClick={() => setIsOpen(false)}
             />
 
-            {/* Panel (glass box) */}
+            {/* panel */}
             <motion.aside
               key="panel"
-              className="fixed left-6 top-6 z-[80] w-[min(92vw,420px)] overflow-hidden rounded-3xl bg-white/10 ring-1 ring-white/10 backdrop-blur-2xl"
+              className="fixed left-6 top-6 z-[80] w-[min(92vw,420px)] overflow-hidden
+                         rounded-3xl bg-white/10 ring-1 ring-white/10 backdrop-blur-2xl"
               style={{ transformOrigin: "48px 48px" }}
               initial={{ opacity: 0, y: -8, scale: 0.98 }}
               animate={{ opacity: 1, y: 0,  scale: 1 }}
               exit={{    opacity: 0, y: -8, scale: 0.98 }}
               transition={{ duration: 0.22, ease: "easeOut" }}
             >
-              {/* Header row: bigger logo + title + close button */}
+              {/* panel header */}
               <div className="flex items-center justify-between px-4 py-3">
                 <div className="flex items-center gap-2 text-white">
                   <img src={logo} alt="Skyvolt Solar" className="h-8 w-8 md:h-10 md:w-10 object-contain" />
-                  <span className="font-bernier md:text-[26px] text-[#ff6a00] pl-2">Skyvolt Solar</span>
+                  <span className="font-bernier md:text-[22px] text-[#ff6a00] pl-1">Skyvolt Solar</span>
                 </div>
 
                 <button
@@ -112,20 +116,15 @@ export function Header() {
                   onClick={() => setIsOpen(false)}
                   className="grid size-9 place-items-center rounded-full hover:bg-white/10 text-white transition-colors"
                 >
-                  <svg width="22" height="22" viewBox="0 0 24 24">
+                  <svg width="22" height="22" viewBox="0 0 24 24" aria-hidden="true">
                     <path d="M4 4 L20 20" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
                     <path d="M20 4 L4 20" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
                   </svg>
                 </button>
               </div>
 
-              {/* Links */}
-              <motion.ul
-                variants={listVariants}
-                initial="open"
-                animate="open"
-                className="px-4 pb-4"
-              >
+              {/* links */}
+              <motion.ul variants={listVariants} initial="open" animate="open" className="px-4 pb-4">
                 {NAV.map((item) => (
                   <motion.li key={item.href} variants={itemVariants}>
                     <a
@@ -145,6 +144,156 @@ export function Header() {
     </header>
   )
 }
+
+
+
+// // components/Header.tsx
+// import * as React from "react"
+// import { motion, AnimatePresence } from "framer-motion"
+// import type { Variants } from "framer-motion"
+// import logo from "./images/SVS.png" // keep your path
+
+
+// const NAV = [
+//   { href: "#services", label: "Services" },
+//   { href: "#about",    label: "About" },
+//   { href: "#results",  label: "Results" },
+//   { href: "#contact",  label: "Contact" },
+// ]
+
+// // Staggered items (white text)
+// const listVariants: Variants = {
+//   open:  { transition: { delayChildren: 0.12, staggerChildren: 0.06 } },
+//   closed:{ transition: { staggerChildren: 0.04, staggerDirection: -1 } },
+// }
+
+// const itemVariants: Variants = {
+//   open:   { y: 0,  opacity: 1, transition: { type: "spring", stiffness: 900, damping: 40 } },
+//   closed: { y: 10, opacity: 0, transition: { type: "spring", stiffness: 900, damping: 40 } },
+// }
+
+// export function Header() {
+//   const [isOpen, setIsOpen] = React.useState(false)
+
+//   // ▼ NEW: drop-down at top, stick to top on scroll
+//   const [scrolled, setScrolled] = React.useState(false)
+//   React.useEffect(() => {
+//     const onScroll = () => setScrolled(window.scrollY > 8)
+//     onScroll()
+//     window.addEventListener("scroll", onScroll, { passive: true })
+//     return () => window.removeEventListener("scroll", onScroll)
+//   }, [])
+
+//   return (
+//     <header
+//       className={[
+//         "fixed inset-x-0 z-[60] transition-[top] duration-300 ease-out",
+//         scrolled ? "top-5" : "top-15", // ▼ NEW: lower when at top
+//       ].join(" ")}
+//     >
+//       <div className="container mx-auto px-4">
+//         <nav className="flex items-center gap-3">
+//           {/* Menu button — fades out while open */}
+//           <motion.button
+//             aria-label="Open menu"
+//             onClick={() => setIsOpen(true)}
+//             initial={false}
+//             animate={{ opacity: isOpen ? 0 : 1, scale: isOpen ? 0.95 : 1 }}
+//             transition={{ duration: 0.18 }}
+//             style={{ pointerEvents: isOpen ? "none" : "auto" }}
+//             className="grid size-12 place-items-center rounded-full border border-white/10 bg-white/8 backdrop-blur-md hover:bg-white/12 text-white"
+//           >
+//             {/* hamburger */}
+//             <svg width="24" height="24" viewBox="0 0 24 24">
+//               <path d="M3 6 H21"  stroke="#ff6a00" strokeWidth="2" strokeLinecap="round" />
+//               <path d="M3 12 H21" stroke="#ff6a00" strokeWidth="2" strokeLinecap="round" />
+//               <path d="M3 18 H21" stroke="#ff6a00" strokeWidth="2" strokeLinecap="round" />
+//             </svg>
+//           </motion.button>
+
+//           {/* Brand pill (logo bigger, same height as menu button) */}
+//           <a
+//             href="/"
+//             className="inline-flex items-center gap-3 rounded-full border border-white/10 bg-white/8 pl-2 pr-4 py-1.5 text-white backdrop-blur-md hover:bg-white/12 transition-colors"
+//           >
+//             {/* 48×48 like the menu button */}
+//             <span className="h-14 w-14 px-2 rounded-full grid place-items-center overflow-hidden">
+//               <img src={logo} alt="Skyvolt Solar" className="h-10 w-10 object-contain" />
+//             </span>
+//             <span className="font-bernier uppercase leading-none text-[18px] md:text-[26px] text-[#ff6a00] pr-2">Skyvolt Solar</span>
+//           </a>
+//         </nav>
+//       </div>
+
+//       {/* Glass menu */}
+//       <AnimatePresence>
+//         {isOpen && (
+//           <>
+//             {/* Dim backdrop */}
+//             <motion.div
+//               key="scrim"
+//               className="fixed inset-0 z-[70] bg-black/40 backdrop-blur-sm"
+//               initial={{ opacity: 0 }}
+//               animate={{ opacity: 1 }}
+//               exit={{ opacity: 0 }}
+//               onClick={() => setIsOpen(false)}
+//             />
+
+//             {/* Panel (glass box) */}
+//             <motion.aside
+//               key="panel"
+//               className="fixed left-6 top-6 z-[80] w-[min(92vw,420px)] overflow-hidden rounded-3xl bg-white/10 ring-1 ring-white/10 backdrop-blur-2xl"
+//               style={{ transformOrigin: "48px 48px" }}
+//               initial={{ opacity: 0, y: -8, scale: 0.98 }}
+//               animate={{ opacity: 1, y: 0,  scale: 1 }}
+//               exit={{    opacity: 0, y: -8, scale: 0.98 }}
+//               transition={{ duration: 0.22, ease: "easeOut" }}
+//             >
+//               {/* Header row: bigger logo + title + close button */}
+//               <div className="flex items-center justify-between px-4 py-3">
+//                 <div className="flex items-center gap-2 text-white">
+//                   <img src={logo} alt="Skyvolt Solar" className="h-8 w-8 md:h-10 md:w-10 object-contain" />
+//                   <span className="font-bernier md:text-[26px] text-[#ff6a00] pl-2">Skyvolt Solar</span>
+//                 </div>
+
+//                 <button
+//                   aria-label="Close menu"
+//                   onClick={() => setIsOpen(false)}
+//                   className="grid size-9 place-items-center rounded-full hover:bg-white/10 text-white transition-colors"
+//                 >
+//                   <svg width="22" height="22" viewBox="0 0 24 24">
+//                     <path d="M4 4 L20 20" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
+//                     <path d="M20 4 L4 20" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
+//                   </svg>
+//                 </button>
+//               </div>
+
+//               {/* Links */}
+//               <motion.ul
+//                 variants={listVariants}
+//                 initial="open"
+//                 animate="open"
+//                 className="px-4 pb-4"
+//               >
+//                 {NAV.map((item) => (
+//                   <motion.li key={item.href} variants={itemVariants}>
+//                     <a
+//                       href={item.href}
+//                       onClick={() => setIsOpen(false)}
+//                       className="block rounded-2xl px-4 py-4 text-2xl text-white hover:bg-white/10 transition-colors"
+//                     >
+//                       {item.label}
+//                     </a>
+//                   </motion.li>
+//                 ))}
+//               </motion.ul>
+//             </motion.aside>
+//           </>
+//         )}
+//       </AnimatePresence>
+//     </header>
+//   )
+// }
 
 
 

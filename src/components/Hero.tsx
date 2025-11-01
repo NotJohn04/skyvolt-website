@@ -14,10 +14,10 @@ export function Hero() {
 
       <div className="container mx-auto grid min-h-[92vh] grid-cols-1 items-center px-4 pb-24 pt-36 md:grid-cols-2">
         <div className="relative z-10 max-w-xl">
-          <div className="mb-5 inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-3 py-1 text-xs text-white/70">
+          {/* <div className="'mb-5 inline-flex items-center gap-2 px-3 py-1 text-xs text-white/70'">
             <Sun className="h-4 w-4 text-brand-400" /> Solar Growth Partner
           </div>
-          
+           */}
           <h1 className="text-5xl font-semibold leading-tight md:text-5xl">
             <span className="bg-gradient-to-br from-brand-300 via-brand-500 to-brand-700 bg-clip-text text-transparent">
               Power Your Solar Sales
