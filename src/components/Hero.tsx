@@ -12,7 +12,7 @@ export function Hero() {
       <Aurora />
       <Spotlight />
 
-      <div className="container mx-auto grid min-h-[92vh] grid-cols-1 items-center px-4 pb-24 pt-36 md:grid-cols-2">
+      <div className="container mx-auto grid min-h-[92vh] grid-cols-1 items-center px-4 pb-10 pt-28 md:grid-cols-2">
         <div className="relative z-10 max-w-xl">
           {/* <div className="'mb-5 inline-flex items-center gap-2 px-3 py-1 text-xs text-white/70'">
             <Sun className="h-4 w-4 text-brand-400" /> Solar Growth Partner
@@ -62,4 +62,5 @@ export function Hero() {
       <div className="pointer-events-none absolute inset-x-0 bottom-0 h-24 bg-gradient-to-b from-transparent to-ink-900" />
     </section>
   );
+  
 }

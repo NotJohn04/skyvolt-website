@@ -1,5 +1,8 @@
 
 import React, { useEffect, useRef, useState } from "react";
+import backgroundSection1 from "./images/background-section1.png";
+import backgroundSection2 from "./images/background-section2.png";
+import backgroundSection3 from "./images/background-section3.png";
 
 const HumanoidSection = () => {
   const sectionRef = useRef<HTMLDivElement>(null);
@@ -119,7 +122,7 @@ const HumanoidSection = () => {
               <div
                 className="absolute inset-0 z-0 bg-gradient-to-b from-pulse-900/40 to-dark-900/80"
                 style={{
-                  backgroundImage: "url('/background-section1.png')",
+                  backgroundImage: `url(${backgroundSection1})`,
                   backgroundSize: "cover",
                   backgroundPosition: "top center",
                   backgroundBlendMode: "overlay"
@@ -155,7 +158,7 @@ const HumanoidSection = () => {
               <div
                 className="absolute inset-0 z-0 bg-gradient-to-b from-pulse-900/40 to-dark-900/80"
                 style={{
-                  backgroundImage: "url('/background-section2.png')",
+                  backgroundImage: `url(${backgroundSection2})`,
                   backgroundSize: "cover",
                   backgroundPosition: "center",
                   backgroundBlendMode: "overlay"
@@ -191,7 +194,7 @@ const HumanoidSection = () => {
               <div
                 className="absolute inset-0 z-0 bg-gradient-to-b from-pulse-900/40 to-dark-900/80"
                 style={{
-                  backgroundImage: "url('/background-section3.png')",
+                  backgroundImage: `url(${backgroundSection3})`,
                   backgroundSize: "cover",
                   backgroundPosition: "bottom center",
                   backgroundBlendMode: "overlay"

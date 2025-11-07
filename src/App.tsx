@@ -47,7 +47,7 @@ export default function App() {
       />
 
       <About />
-      <HumanoidSection />
+      {/* <HumanoidSection /> */}
       <section className="bg-[radial-gradient(1200px_600px_at_20%_0%,theme(colors.brand.400/.10),transparent_60%)]">
         <FeaturesSectionDemo />
       </section>

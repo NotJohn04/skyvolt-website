@@ -1,64 +1,152 @@
-import { ImageWithFallback } from "./figma/ImageWithFallback.tsx";
+// components/Results.tsx
+import { ImageWithFallback } from "./figma/ImageWithFallback";
+import { BackgroundGradientAnimation } from "./ui/background-gradient-animation";
+
+type Study = {
+  company: string;
+  metric: string;
+  timeframe: string;
+  details: string;
+  image: string;
+};
 
 export function Results() {
-  const caseStudies = [
+  const caseStudies: Study[] = [
     {
-      company: "SunPower Installations",
-      metric: "340% increase in qualified leads",
-      details: "Within 6 months of launching our SEO and PPC campaigns",
-      image: "https://images.unsplash.com/photo-1624397640148-949b1732bb0a?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxzb2xhciUyMHBhbmVscyUyMHJvb2Z8ZW58MXx8fHwxNzYxNTUyMDgxfDA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
+      company: "AmSolar Sdn Bhd",
+      metric: "RM120,052/mo new revenue",
+      timeframe: "in 2 months",
+      details: "Full-funnel ads + WhatsApp automations.",
+      image:
+        "https://images.unsplash.com/photo-1516116216624-53e697fedbea?q=80&w=1600&auto=format&fit=crop",
     },
     {
-      company: "Bright Energy Solutions",
-      metric: "$2.3M in new revenue",
-      details: "Generated through targeted digital marketing campaigns in 2024",
-      image: "https://images.unsplash.com/photo-1709715357520-5e1047a2b691?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxidXNpbmVzcyUyMHRlYW0lMjBtZWV0aW5nfGVufDF8fHx8MTc2MTQ1MDE3N3ww&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
+      company: "Kemuning Structures Sdn Bhd",
+      metric: "RM80,640/mo new revenue",
+      timeframe: "in 3 months",
+      details: "Lead gen + auto-quote flows to speed follow-ups.",
+      image:
+        "https://images.unsplash.com/photo-1542332213-9b5a5a3e7c38?q=80&w=1600&auto=format&fit=crop",
     },
     {
-      company: "EcoSolar Group",
-      metric: "First page rankings",
-      details: "Achieved #1-3 positions for 47 competitive solar keywords",
-      image: "https://images.unsplash.com/photo-1599658880436-c61792e70672?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxkaWdpdGFsJTIwbWFya2V0aW5nJTIwYW5hbHl0aWNzfGVufDF8fHx8MTc2MTU0MjU5Mnww&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
+      company: "Solar Sunyield Sdn Bhd",
+      metric: "RM55,060/mo new revenue",
+      timeframe: "in 1 month",
+      details: "Rapid test-and-scale campaigns with instant replies.",
+      image:
+        "https://images.unsplash.com/photo-1508514177221-188b1cf16e9d?q=80&w=1600&auto=format&fit=crop",
     },
   ];
 
   return (
-    <section id="results" className="py-20 bg-[radial-gradient(1000px_500px_at_80%_-10%,theme(colors.brand.400/.10),transparent_60%)]">
-      <div className="container mx-auto px-4">
-        <div className="text-center mb-16">
-          <div className="inline-block px-4 py-2 bg-brand-100 text-brand-600 rounded-full mb-4">
+    <section
+      id="results"
+      className="relative isolate overflow-hidden bg-transparent py-12 sm:py-14 md:py-20"
+    >
+      <div className="absolute inset-0 -z-40 bg-ink-900" />
+
+      {/* Animated gradient layer (Aceternity) */}
+      {/* <div className="absolute inset-0 -z-30">
+        <BackgroundGradientAnimation fill="parent" interactive={false} />
+      </div> */}
+
+      {/* Brand glows */}
+      <div className="pointer-events-none absolute inset-0 -z-20
+                      bg-[radial-gradient(900px_450px_at_80%_-10%,theme(colors.brand.500/.15),transparent_60%),radial-gradient(700px_400px_at_20%_110%,theme(colors.brand.400/.10),transparent_60%)]" />
+
+      {/* Subtle grid, masked to center so edges fade out */}
+      <div
+        className="pointer-events-none absolute inset-0 -z-10 opacity-[0.16]
+                   bg-[linear-gradient(to_right,rgba(255,255,255,0.06)_1px,transparent_1px),linear-gradient(to_bottom,rgba(255,255,255,0.06)_1px,transparent_1px)]
+                   bg-[size:64px_64px]"
+        style={{
+          WebkitMaskImage:
+            "radial-gradient(120% 80% at 50% 30%, black 55%, transparent 95%)",
+          maskImage:
+            "radial-gradient(120% 80% at 50% 30%, black 55%, transparent 95%)",
+        }}
+      />
+
+      {/* Soft blend to previous section */}
+      <div className="pointer-events-none absolute inset-x-0 -top-10 h-10 bg-gradient-to-b from-transparent to-ink-900" />
+
+      {/* Container: bigger desktop gutters to center content nicely */}
+      <div className="container mx-auto
+                      px-4 sm:px-6 lg:px-20 xl:px-28 2xl:px-40">
+
+        {/* Heading */}
+        <div className="text-center mb-8 sm:mb-10 md:mb-12">
+          <span className="inline-flex items-center rounded-full border border-white/10 bg-white/5 px-3 py-1 text-xs font-medium tracking-wide text-white/70">
             Proven Results
-          </div>
-          <h2 className="text-foreground mb-4">
+          </span>
+          <h2 className="mt-4 text-2xl sm:text-3xl md:text-4xl font-extrabold tracking-tight text-white">
             Real Growth for Real Solar Companies
           </h2>
-          <p className="text-lg text-ink-700 max-w-2xl mx-auto">
-            See how we've helped solar companies like yours achieve remarkable results.
+          <p className="mt-3 sm:mt-4 text-base sm:text-lg text-white/70 max-w-2xl mx-auto">
+            See how we’ve helped solar companies like yours achieve remarkable results.
           </p>
         </div>
 
-        <div className="grid md:grid-cols-3 gap-8">
-          {caseStudies.map((study, index) => (
-            <div
-              key={index}
-              className="bg-card rounded-2xl overflow-hidden border border-border hover:border-brand-300/60 hover:shadow-[0_20px_50px_-20px_rgba(255,106,0,.25)] transition-all"
-            >
-              <div className="h-48 overflow-hidden">
-                <ImageWithFallback
-                  src={study.image}
-                  alt={study.company}
-                  className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
-                />
-              </div>
-              <div className="p-6">
-                <h3 className="text-foreground mb-2">{study.company}</h3>
-                <div className="text-xl text-brand-600 mb-2">{study.metric}</div>
-                <p className="text-ink-700">{study.details}</p>
-              </div>
-            </div>
+        {/* Mobile: horizontal snap carousel */}
+        <div className="md:hidden -mx-4 px-4 overflow-x-auto pb-3 snap-x snap-mandatory scroll-pl-4">
+          <ul className="flex gap-4 pr-4">
+            {caseStudies.map((s, i) => (
+              <li key={i} className="snap-start shrink-0 basis-[86%]">
+                <Card study={s} />
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        {/* md+: responsive grid */}
+        <div className="hidden md:grid md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
+          {caseStudies.map((s, i) => (
+            <Card key={i} study={s} />
           ))}
         </div>
       </div>
     </section>
+  );
+}
+
+function Card({ study }: { study: Study }) {
+  return (
+    <article
+      className="group relative rounded-2xl border border-white/10 bg-white/5 backdrop-blur
+                 hover:border-brand-400/50 hover:shadow-[0_20px_50px_-20px_rgba(255,106,0,.28)]
+                 transition-all duration-300"
+    >
+      {/* Ambient card glow on hover */}
+      <div className="pointer-events-none absolute -inset-px -z-10 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300
+                      bg-[radial-gradient(400px_140px_at_50%_0%,theme(colors.brand.500/.18),transparent_60%)]" />
+
+      {/* Media */}
+      <div className="relative overflow-hidden rounded-t-2xl">
+        <div className="aspect-[16/9]">
+          <ImageWithFallback
+            src={study.image}
+            alt={study.company}
+            className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-[1.04]"
+          />
+        </div>
+
+        {/* gradient & chips */}
+        <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/55 via-black/10 to-transparent" />
+        <div className="absolute bottom-3 left-3 flex items-center gap-2">
+          <span className="rounded-full bg-black/60 text-white/90 backdrop-blur px-2.5 py-1 text-xs border border-white/10">
+            {study.metric}
+          </span>
+          <span className="rounded-full bg-white/10 text-white/90 backdrop-blur px-2.5 py-1 text-xs border border-white/10">
+            {study.timeframe}
+          </span>
+        </div>
+      </div>
+
+      {/* Body */}
+      <div className="p-5 md:p-6">
+        <h3 className="text-white text-lg md:text-xl font-semibold">{study.company}</h3>
+        <p className="mt-2 text-white/70 text-sm md:text-base">{study.details}</p>
+      </div>
+    </article>
   );
 }

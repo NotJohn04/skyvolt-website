@@ -1,53 +1,63 @@
 import { Button } from "./ui/button";
 
+const LOOM_ID = "170782578db743208b9a34d6020eb9a4";
+const LOOM_SHARE = `https://www.loom.com/share/${LOOM_ID}`;
+const LOOM_EMBED = `https://www.loom.com/embed/${LOOM_ID}`;
+const LOOM_THUMB =
+  "https://cdn.loom.com/sessions/thumbnails/170782578db743208b9a34d6020eb9a4-fa136bacf0495e7f-full-play.gif";
+
 export function About() {
   return (
-    <section
-      id="about"
-      className="relative isolate overflow-hidden bg-ink-900 text-white"
-    >
-      {/* NEW: seam that blends the top of this section into the hero */}
-      <div className="pointer-events-none absolute inset-x-0 -top-24 h-24 bg-gradient-to-b from-transparent to-ink-900" />
+    <section id="about" className="relative isolate overflow-hidden bg-ink-900 text-white">
+      {/* seam into hero */}
+      <div className="pointer-events-none absolute inset-x-0 -top-20 h-20 bg-gradient-to-b from-transparent to-ink-900" />
 
       {/* subtle brand glow */}
       <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(900px_450px_at_50%_0%,theme(colors.brand.500/.12),transparent_60%)]" />
 
-      <div className="relative container mx-auto px-4 py-16 md:py-24">
-        <h2 className="text-center text-4xl md:text-6xl font-extrabold leading-tight tracking-tight text-white">
+      <div className="relative container mx-auto px-4 pt-12 pb-16 md:pt-20 md:pb-24">
+        <h2 className="text-center text-4xl md:text-6xl font-extrabold leading-tight tracking-tight">
           <span className="block">IT’S NOT AN EVENT,</span>
           <span className="block">
             IT’S A <span className="text-brand-500">SCALING WORKSHOP.</span>
           </span>
         </h2>
 
-        <p className="mt-6 text-center text-lg md:text-xl text-white/70 max-w-4xl mx-auto">
-          It’s not motivational hype. It’s tactical help solving real-world solar
-          sales problems — smoother ops, faster follow-ups, better quotes.
+        <p className="mt-5 md:mt-6 text-center text-base md:text-xl text-white/70 max-w-4xl mx-auto">
+          It’s not motivational hype. It’s tactical help solving real-world solar sales problems —
+          smoother ops, faster follow-ups, better quotes.
         </p>
 
-        {/* Video placeholder (swap to iframe later) */}
-        <div className="mt-10 md:mt-14">
+        {/* Video */}
+        <div className="mt-8 md:mt-12">
           <div className="relative mx-auto aspect-video w-full max-w-5xl overflow-hidden rounded-2xl border border-white/10 bg-ink-800/60 shadow-xl backdrop-blur">
-            <div className="absolute inset-0 grid place-items-center">
-              <div className="text-center">
-                <div className="text-xs uppercase tracking-widest text-white/50">Vimeo video</div>
-                <div className="mt-1 text-base text-white/80">
-                  Paste your link later — this is a placeholder.
-                </div>
-                <code className="mt-4 inline-block rounded bg-white/5 px-3 py-1 text-sm text-white/90">
-                  https://player.vimeo.com/video/123456789
-                </code>
-                <div className="mt-6 flex items-center justify-center gap-3">
-                  <Button variant="outline" className="rounded-full border-white/20 text-white hover:bg-white/10">
-                    Learn more
-                  </Button>
-                  <Button className="rounded-full bg-gradient-to-r from-brand-500 to-brand-600">
-                    Get Started
-                  </Button>
-                </div>
-              </div>
-            </div>
-            {/* swap with iframe when ready */}
+            <iframe
+              className="absolute inset-0 h-full w-full"
+              src={LOOM_EMBED}
+              title="Boost Your Solar Installations with Our Proven Strategy!"
+              allow="autoplay; encrypted-media; picture-in-picture"
+              allowFullScreen
+              loading="lazy"
+            />
+          </div>
+
+          {/* Small fallback/open-in-loom link for edge cases */}
+          <div className="mt-3 text-center text-sm text-white/60">
+            Having trouble?{" "}
+            <a
+              href={LOOM_SHARE}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="underline decoration-white/30 hover:decoration-white"
+            >
+              Open video in a new tab
+            </a>
+          </div>
+
+
+
+          {/* CTAs */}
+          <div className="mt-6 flex items-center justify-center gap-3">
           </div>
         </div>
       </div>
