@@ -39,9 +39,9 @@ export function Hero() {
           </div>
 
           <dl className="mt-10 grid grid-cols-3 gap-6 text-center text-sm">
-            <div><dt className="text-white/50">Leads/mo</dt><dd className="mt-1 text-lg font-semibold text-white">200+</dd></div>
-            <div><dt className="text-white/50">Appt. rate</dt><dd className="mt-1 text-lg font-semibold text-white">32%</dd></div>
-            <div><dt className="text-white/50">Satisfaction</dt><dd className="mt-1 text-lg font-semibold text-white">98%</dd></div>
+            <div><dt className="text-white/50">Revenue Generated</dt><dd className="mt-1 text-lg font-semibold text-white">RM357,000+</dd></div>
+            <div><dt className="text-white/50">Time Saved</dt><dd className="mt-1 text-lg font-semibold text-white">1,200+ hours</dd></div>
+            <div><dt className="text-white/50">CPL reduced by</dt><dd className="mt-1 text-lg font-semibold text-white">25%</dd></div>
           </dl>
         </div>
 

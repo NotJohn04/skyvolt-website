@@ -46,7 +46,7 @@ export default function LogoTicker({
       {/* tighter top/bottom spacing on mobile */}
       <div className="relative mx-auto w-full max-w-[1200px] px-4 sm:px-8 md:px-12 lg:px-20 xl:px-28 pt-3 pb-6 sm:pt-4 sm:pb-8 md:pt-6 md:pb-10">
         <div className="mb-3 sm:mb-4 md:mb-6 flex items-center justify-center">
-          <span className="inline-flex items-center rounded-full border border-white/10 bg-white/5 px-3 py-1 text-xs font-medium tracking-wide text-white/70">
+          <span className="inline-flex items-center rounded-full border border-brand-500/25 bg-brand-500/10 px-3 py-1 text-xs font-medium text-brand-300">
             Trusted by top solar teams
           </span>
         </div>

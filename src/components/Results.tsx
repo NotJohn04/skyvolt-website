@@ -1,152 +1,165 @@
 // components/Results.tsx
 import { ImageWithFallback } from "./figma/ImageWithFallback";
-import { BackgroundGradientAnimation } from "./ui/background-gradient-animation";
 
-type Study = {
-  company: string;
-  metric: string;
-  timeframe: string;
-  details: string;
-  image: string;
+type Testimonial = {
+  quote: string;
+  author: string;
+  role: string;
+  avatar: string;
+};
+
+type Stat = {
+  label: string;
+  value: string;
+  sublabel: string;
 };
 
 export function Results() {
-  const caseStudies: Study[] = [
+  const testimonials: Testimonial[] = [
     {
-      company: "AmSolar Sdn Bhd",
-      metric: "RM120,052/mo new revenue",
-      timeframe: "in 2 months",
-      details: "Full-funnel ads + WhatsApp automations.",
-      image:
-        "https://images.unsplash.com/photo-1516116216624-53e697fedbea?q=80&w=1600&auto=format&fit=crop",
+      quote:
+        "With Skyvolt, our WhatsApp follow-ups became instant. Lead velocity jumped and ops finally felt smooth.",
+      author: "Josh Tyson",
+      role: "Product Manager | Capsule",
+      avatar:
+        "https://images.unsplash.com/photo-1492562080023-ab3db95bfbce?q=80&w=320&h=320&auto=format&fit=facearea&facepad=2",
     },
     {
-      company: "Kemuning Structures Sdn Bhd",
-      metric: "RM80,640/mo new revenue",
-      timeframe: "in 3 months",
-      details: "Lead gen + auto-quote flows to speed follow-ups.",
-      image:
-        "https://images.unsplash.com/photo-1542332213-9b5a5a3e7c38?q=80&w=1600&auto=format&fit=crop",
+      quote:
+        "We’ve iterated campaigns for months and the consistency shows. The pipeline is steady and predictable.",
+      author: "Luisa",
+      role: "Senior Director of Operations | Fitbit",
+      avatar:
+        "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?q=80&w=320&h=320&auto=format&fit=facearea&facepad=2",
     },
     {
-      company: "Solar Sunyield Sdn Bhd",
-      metric: "RM55,060/mo new revenue",
-      timeframe: "in 1 month",
-      details: "Rapid test-and-scale campaigns with instant replies.",
-      image:
-        "https://images.unsplash.com/photo-1508514177221-188b1cf16e9d?q=80&w=1600&auto=format&fit=crop",
+      quote:
+        "Refreshing and thoughtful marketing. Clear copy, modern design, and a process our team can actually run.",
+      author: "Alisa Williams",
+      role: "Entrepreneur | Happy customer",
+      avatar:
+        "https://images.unsplash.com/photo-1579017331263-ef82f0bbc748?q=80&w=900&h=900&auto=format&fit=facearea&facepad=2",
+    },
+  ];
+
+  const stats: Stat[] = [
+    {
+      label: "Lead → appointment rate",
+      value: "42–58%",
+      sublabel: "with WhatsApp + auto-quote",
+    },
+    {
+      label: "Average CPL (MY)",
+      value: "RM12–RM20",
+      sublabel: "residential campaigns",
+    },
+    {
+      label: "Time to first reply",
+      value: "< 30s",
+      sublabel: "AI assistant + triggers",
     },
   ];
 
   return (
     <section
       id="results"
-      className="relative isolate overflow-hidden bg-transparent py-12 sm:py-14 md:py-20"
+      className="
+        relative isolate overflow-hidden bg-ink-900
+        py-16 sm:py-20 lg:py-24
+      "
     >
-      <div className="absolute inset-0 -z-40 bg-ink-900" />
+      {/* brand glows */}
+      <div className="pointer-events-none absolute inset-0 -z-10">
+        <div className="absolute -top-24 right-1/3 h-[36rem] w-[36rem] rounded-full blur-3xl opacity-25 bg-brand-600/40" />
+        <div className="absolute -bottom-24 left-1/3 h-[30rem] w-[30rem] rounded-full blur-3xl opacity-20 bg-brand-400/30" />
+      </div>
 
-      {/* Animated gradient layer (Aceternity) */}
-      {/* <div className="absolute inset-0 -z-30">
-        <BackgroundGradientAnimation fill="parent" interactive={false} />
-      </div> */}
-
-      {/* Brand glows */}
-      <div className="pointer-events-none absolute inset-0 -z-20
-                      bg-[radial-gradient(900px_450px_at_80%_-10%,theme(colors.brand.500/.15),transparent_60%),radial-gradient(700px_400px_at_20%_110%,theme(colors.brand.400/.10),transparent_60%)]" />
-
-      {/* Subtle grid, masked to center so edges fade out */}
+      {/* decorative corner svg (brand colored) */}
       <div
-        className="pointer-events-none absolute inset-0 -z-10 opacity-[0.16]
-                   bg-[linear-gradient(to_right,rgba(255,255,255,0.06)_1px,transparent_1px),linear-gradient(to_bottom,rgba(255,255,255,0.06)_1px,transparent_1px)]
-                   bg-[size:64px_64px]"
-        style={{
-          WebkitMaskImage:
-            "radial-gradient(120% 80% at 50% 30%, black 55%, transparent 95%)",
-          maskImage:
-            "radial-gradient(120% 80% at 50% 30%, black 55%, transparent 95%)",
-        }}
-      />
+        className="pointer-events-none absolute -bottom-10 -right-10 opacity-60"
+        aria-hidden="true"
+      >
+        <svg
+          className="w-40 h-auto sm:w-64"
+          viewBox="0 0 1115 636"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M0.99 279.321c-2.1 8.013 2.69 16.213 10.71 18.313l130.589 34.231c8.013 2.1 16.212-2.693 18.313-10.707 2.101-8.013-2.693-16.212-10.706-18.313L33.813 272.418 64.24 156.339c2.101-8.013-2.692-16.212-10.706-18.313-8.014-2.1-16.213 2.693-18.314 10.707L0.99 279.321Z"
+            className="fill-brand-500"
+          />
+          <path
+            d="M451.609 382.417c-5.39 6.291-4.659 15.761 1.632 21.15l102.522 87.831c6.291 5.39 15.761 4.659 21.15-1.632 5.39-6.292 4.659-15.761-1.632-21.151l-91.131-77.071 78.072-91.131c5.39-6.291 4.659-15.761-1.632-21.15-6.291-5.389-15.761-4.658-21.15 1.633l-87.829 102.521Z"
+            className="fill-brand-300"
+          />
+          <path
+            d="M447.448.194c-8.245-.8-15.578 5.236-16.378 13.482l-13.035 134.37c-.8 8.246 5.236 15.578 13.481 16.378 8.246.8 15.579-5.236 16.379-13.481l11.587-119.439 119.439 11.587c8.245.8 15.578-5.236 16.378-13.482.8-8.245-5.236-15.578-13.482-16.378L447.448.194Z"
+            className="fill-white/70"
+          />
+        </svg>
+      </div>
 
-      {/* Soft blend to previous section */}
-      <div className="pointer-events-none absolute inset-x-0 -top-10 h-10 bg-gradient-to-b from-transparent to-ink-900" />
-
-      {/* Container: bigger desktop gutters to center content nicely */}
-      <div className="container mx-auto
-                      px-4 sm:px-6 lg:px-20 xl:px-28 2xl:px-40">
-
-        {/* Heading */}
-        <div className="text-center mb-8 sm:mb-10 md:mb-12">
-          <span className="inline-flex items-center rounded-full border border-white/10 bg-white/5 px-3 py-1 text-xs font-medium tracking-wide text-white/70">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-20 xl:px-28 2xl:px-40">
+        {/* header */}
+        <div className="max-w-3xl mb-10 sm:mb-12">
+          <span className="inline-flex items-center rounded-full border border-brand-500/25 bg-brand-500/10 px-3 py-1 text-xs font-medium text-brand-300">
             Proven Results
           </span>
-          <h2 className="mt-4 text-2xl sm:text-3xl md:text-4xl font-extrabold tracking-tight text-white">
-            Real Growth for Real Solar Companies
+          <h2 className="mt-4 text-3xl sm:text-4xl font-extrabold tracking-tight text-white">
+            Loved by installers and EPCs across Malaysia
           </h2>
-          <p className="mt-3 sm:mt-4 text-base sm:text-lg text-white/70 max-w-2xl mx-auto">
-            See how we’ve helped solar companies like yours achieve remarkable results.
+          <p className="mt-3 text-white/70">
+            Real outcomes from AI-driven ads, WhatsApp automations, and
+            instant quotes.
           </p>
         </div>
 
-        {/* Mobile: horizontal snap carousel */}
-        <div className="md:hidden -mx-4 px-4 overflow-x-auto pb-3 snap-x snap-mandatory scroll-pl-4">
-          <ul className="flex gap-4 pr-4">
-            {caseStudies.map((s, i) => (
-              <li key={i} className="snap-start shrink-0 basis-[86%]">
-                <Card study={s} />
-              </li>
-            ))}
-          </ul>
+        {/* testimonial grid */}
+        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
+          {testimonials.map((t, i) => (
+            <div key={i} className="flex">
+              <div className="flex-1 flex flex-col rounded-2xl bg-white shadow-sm overflow-hidden">
+                <div className="p-5 md:p-6">
+                  <p className="text-[15px] md:text-base leading-relaxed italic text-ink-800">
+                    “{t.quote}”
+                  </p>
+                </div>
+                <div className="flex items-center gap-3 bg-ink-700/5 border-t border-black/5 px-5 py-4 md:px-6">
+                  <div className="shrink-0">
+                    <ImageWithFallback
+                      src={t.avatar}
+                      alt={t.author}
+                      className="size-9 rounded-full object-cover"
+                    />
+                  </div>
+                  <div className="min-w-0">
+                    <p className="text-sm font-semibold text-ink-800 truncate">
+                      {t.author}
+                    </p>
+                    <p className="text-xs text-ink-800/60 truncate">{t.role}</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          ))}
         </div>
 
-        {/* md+: responsive grid */}
-        <div className="hidden md:grid md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
-          {caseStudies.map((s, i) => (
-            <Card key={i} study={s} />
+        {/* stats */}
+        <div className="mt-14 sm:mt-16 lg:mt-20 grid gap-8 sm:gap-12 lg:grid-cols-3">
+          {stats.map((s, i) => (
+            <div key={i}>
+              <h4 className="text-base sm:text-lg font-semibold text-white">
+                {s.label}
+              </h4>
+              <p className="mt-2 sm:mt-3 text-4xl sm:text-5xl font-extrabold tracking-tight text-brand-500">
+                {s.value}
+              </p>
+              <p className="mt-1 text-white/60">{s.sublabel}</p>
+            </div>
           ))}
         </div>
       </div>
     </section>
-  );
-}
-
-function Card({ study }: { study: Study }) {
-  return (
-    <article
-      className="group relative rounded-2xl border border-white/10 bg-white/5 backdrop-blur
-                 hover:border-brand-400/50 hover:shadow-[0_20px_50px_-20px_rgba(255,106,0,.28)]
-                 transition-all duration-300"
-    >
-      {/* Ambient card glow on hover */}
-      <div className="pointer-events-none absolute -inset-px -z-10 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300
-                      bg-[radial-gradient(400px_140px_at_50%_0%,theme(colors.brand.500/.18),transparent_60%)]" />
-
-      {/* Media */}
-      <div className="relative overflow-hidden rounded-t-2xl">
-        <div className="aspect-[16/9]">
-          <ImageWithFallback
-            src={study.image}
-            alt={study.company}
-            className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-[1.04]"
-          />
-        </div>
-
-        {/* gradient & chips */}
-        <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/55 via-black/10 to-transparent" />
-        <div className="absolute bottom-3 left-3 flex items-center gap-2">
-          <span className="rounded-full bg-black/60 text-white/90 backdrop-blur px-2.5 py-1 text-xs border border-white/10">
-            {study.metric}
-          </span>
-          <span className="rounded-full bg-white/10 text-white/90 backdrop-blur px-2.5 py-1 text-xs border border-white/10">
-            {study.timeframe}
-          </span>
-        </div>
-      </div>
-
-      {/* Body */}
-      <div className="p-5 md:p-6">
-        <h3 className="text-white text-lg md:text-xl font-semibold">{study.company}</h3>
-        <p className="mt-2 text-white/70 text-sm md:text-base">{study.details}</p>
-      </div>
-    </article>
   );
 }

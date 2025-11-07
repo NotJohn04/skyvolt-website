@@ -1,6 +1,7 @@
 // components/Footer.tsx
 import { Sun, Mail, Phone, MapPin } from "lucide-react";
 import { BackgroundGradientAnimation } from "./ui/background-gradient-animation";
+import logo from "./images/logo.png";
 
 export function Footer() {
   return (
@@ -20,21 +21,18 @@ export function Footer() {
           <div>
             <div className="flex items-center gap-2 mb-4">
               <div className="w-10 h-10 bg-gradient-to-br from-brand-500 to-brand-600 rounded-lg flex items-center justify-center">
-                <Sun className="w-6 h-6 text-white" />
+                <img src={logo} alt="Skyvolt Solar" className="h-8 w-8 md:h-10 md:w-10 object-contain" />
               </div>
-              <span className="text-white font-semibold">Skyvolt Solar</span>
+              <span className="font-bernier tracking-[.06em] text-[18px] md:text-[22px] text-[#ff6a00] pl-1">Skyvolt Solar</span>
             </div>
-            <p className="text-sm text-white/70">
-              Empowering solar companies with AI-driven marketing & automation.
-            </p>
           </div>
 
           {/* Services */}
           <div>
             <h4 className="text-white mb-4">Services</h4>
             <ul className="space-y-2 text-sm">
-              <li><a href="#" className="hover:text-brand-400 transition-colors">SEO & Local Search</a></li>
-              <li><a href="#" className="hover:text-brand-400 transition-colors">PPC Advertising</a></li>
+              <li><a href="#" className="hover:text-brand-400 transition-colors">Facebook Advertising</a></li>
+              {/* <li><a href="#" className="hover:text-brand-400 transition-colors">PPC Advertising</a></li> */}
               <li><a href="#" className="hover:text-brand-400 transition-colors">Automation & CRM</a></li>
               <li><a href="#" className="hover:text-brand-400 transition-colors">AI Chatbot</a></li>
             </ul>
@@ -46,7 +44,7 @@ export function Footer() {
             <ul className="space-y-2 text-sm">
               <li><a href="#about" className="hover:text-brand-400 transition-colors">About Us</a></li>
               <li><a href="#results" className="hover:text-brand-400 transition-colors">Case Studies</a></li>
-              <li><a href="#" className="hover:text-brand-400 transition-colors">Blog</a></li>
+              {/* <li><a href="#" className="hover:text-brand-400 transition-colors">Blog</a></li> */}
               <li><a href="#contact" className="hover:text-brand-400 transition-colors">Contact</a></li>
             </ul>
           </div>
@@ -57,15 +55,15 @@ export function Footer() {
             <ul className="space-y-3 text-sm">
               <li className="flex items-start gap-2">
                 <Mail className="w-4 h-4 mt-1 text-brand-400" />
-                <span>hello@skyvoltsolar.com</span>
+                <span>skyvoltsolar@gmail.com</span>
               </li>
               <li className="flex items-start gap-2">
                 <Phone className="w-4 h-4 mt-1 text-brand-400" />
-                <span>+60 12-345 6789</span>
+                <span>+60 18-291 5479</span>
               </li>
               <li className="flex items-start gap-2">
                 <MapPin className="w-4 h-4 mt-1 text-brand-400" />
-                <span>Shah Alam, Selangor</span>
+                <span>Cheras, Kuala Lumpur</span>
               </li>
             </ul>
           </div>
