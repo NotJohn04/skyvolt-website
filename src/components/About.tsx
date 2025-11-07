@@ -3,8 +3,6 @@ import { Button } from "./ui/button";
 const LOOM_ID = "170782578db743208b9a34d6020eb9a4";
 const LOOM_SHARE = `https://www.loom.com/share/${LOOM_ID}`;
 const LOOM_EMBED = `https://www.loom.com/embed/${LOOM_ID}`;
-const LOOM_THUMB =
-  "https://cdn.loom.com/sessions/thumbnails/170782578db743208b9a34d6020eb9a4-fa136bacf0495e7f-full-play.gif";
 
 export function About() {
   return (
@@ -17,15 +15,16 @@ export function About() {
 
       <div className="relative container mx-auto px-4 pt-12 pb-16 md:pt-20 md:pb-24">
         <h2 className="text-center text-4xl md:text-6xl font-extrabold leading-tight tracking-tight">
-          <span className="block">IT’S NOT AN EVENT,</span>
+          <span className="block">AI-Driven Marketing</span>
           <span className="block">
-            IT’S A <span className="text-brand-500">SCALING WORKSHOP.</span>
+            That Books <span className="text-brand-500">More Solar Jobs.</span>
           </span>
         </h2>
 
         <p className="mt-5 md:mt-6 text-center text-base md:text-xl text-white/70 max-w-4xl mx-auto">
-          It’s not motivational hype. It’s tactical help solving real-world solar sales problems —
-          smoother ops, faster follow-ups, better quotes.
+          We run the full funnel for solar EPCs: Meta ads → WhatsApp AI chatbot → instant
+          SMS/Email follow-ups → auto-generated quotes → one-tap calendar booking →
+          pipeline reporting. No hype — just systems that turn interest into appointments.
         </p>
 
         {/* Video */}
@@ -34,14 +33,14 @@ export function About() {
             <iframe
               className="absolute inset-0 h-full w-full"
               src={LOOM_EMBED}
-              title="Boost Your Solar Installations with Our Proven Strategy!"
+              title="How Skyvolt’s AI-driven solar marketing system works"
               allow="autoplay; encrypted-media; picture-in-picture"
               allowFullScreen
               loading="lazy"
             />
           </div>
 
-          {/* Small fallback/open-in-loom link for edge cases */}
+          {/* Small fallback/open-in-loom link */}
           <div className="mt-3 text-center text-sm text-white/60">
             Having trouble?{" "}
             <a
@@ -54,10 +53,22 @@ export function About() {
             </a>
           </div>
 
-
-
           {/* CTAs */}
           <div className="mt-6 flex items-center justify-center gap-3">
+            <a href="#contact">
+              <Button size="lg" className="bg-white text-brand-600 hover:bg-white/90">
+                Schedule Free Consultation
+              </Button>
+            </a>
+            <a href="#results">
+              <Button
+                size="lg"
+                variant="outline"
+                className="border-2 border-white text-white hover:bg-white/10"
+              >
+                See Case Studies
+              </Button>
+            </a>
           </div>
         </div>
       </div>
