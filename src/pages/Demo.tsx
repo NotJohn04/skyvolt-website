@@ -20,7 +20,7 @@ export default function Demo() {
         </div>
 
         <section className="container mx-auto px-4">
-          <div className="mx-auto max-w-2xl text-center">nav
+          <div className="mx-auto max-w-2xl text-center">
             <h1 className="text-3xl sm:text-4xl md:text-5xl font-extrabold tracking-tight">
               Interactive Demo <span className="text-brand-500">(Coming Soon)</span>
             </h1>
