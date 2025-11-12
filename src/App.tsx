@@ -18,12 +18,13 @@ import raygosolar from "./components/partners/Untitled design (13).png";
 import AD from "./components/partners/Untitled design (14).png"
 import IPS from "./components/partners/logo_footer.png"
 import "./styles/fonts.css";
-import HumanoidSection from "./components/testingSection";
-import TestingSection from "./components/testingSection";
+import { Analytics } from '@vercel/analytics/react';
+
 
 export default function App() {
   return (
     <div className="min-h-screen bg-background text-foreground">
+
       <Header />
       <Hero />
       <LogoTicker
@@ -54,6 +55,7 @@ export default function App() {
       <Results />
       <CTA />
       <Footer />
+      <Analytics />
     </div>
   );
 }
