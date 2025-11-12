@@ -1,21 +1,22 @@
-// components/Header.tsx
 import * as React from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import type { Variants } from "framer-motion";
+import { Link } from "react-router-dom";
 import logo from "./images/SVS.png";
 
+const LOGIN_URL = "https://main.skyvoltsolar.com";
+const DEMO_URL = "/demo";
+const PROFILE_URL = "/Skyvolt-Solar-Company-Profile.pdf";
 
 const NAV = [
-  { href: "#services", label: "Services" },
-  { href: "#about",    label: "About" },
-  { href: "#results",  label: "Results" },
-  { href: "#contact",  label: "Contact" },
+  { href: "/#services", label: "Services" },
+  { href: "/#about",    label: "About" },
+  { href: "/#results",  label: "Results" },
 ];
 
-// link list animation
 const listVariants: Variants = {
-  open:  { transition: { delayChildren: 0.12, staggerChildren: 0.06 } },
-  closed:{ transition: { staggerChildren: 0.04, staggerDirection: -1 } },
+  open:   { transition: { delayChildren: 0.12, staggerChildren: 0.06 } },
+  closed: { transition: { staggerChildren: 0.04, staggerDirection: -1 } },
 };
 const itemVariants: Variants = {
   open:   { y: 0,  opacity: 1, transition: { type: "spring", stiffness: 900, damping: 40 } },
@@ -33,17 +34,26 @@ export function Header() {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
+  // Lock background scroll when drawer is open (fixes mobile Demo page issue)
+  React.useEffect(() => {
+    const root = document.documentElement;
+    if (isOpen) {
+      const prev = root.style.overflow;
+      root.style.overflow = "hidden";
+      return () => { root.style.overflow = prev; };
+    }
+  }, [isOpen]);
+
   return (
     <header
       className={[
-        // mobile: stick to very top; md+: animate drop
         "fixed inset-x-0 top-0 z-[60] md:transition-[top] md:duration-300 md:ease-out",
         scrolled ? "md:top-5" : "md:top-10",
       ].join(" ")}
     >
       <div className="container mx-auto px-4">
+        {/* Pill stays on all breakpoints; it sits on the LEFT on desktop */}
         <nav className="flex items-center">
-          {/* One pill: full width on mobile, compact on md+ */}
           <motion.button
             aria-label="Open menu"
             onClick={() => setIsOpen(true)}
@@ -58,7 +68,7 @@ export function Header() {
               border border-white/10 bg-white/8 text-white backdrop-blur-md
               hover:bg-white/12 transition-colors
               w-full max-w-[calc(100vw-2rem)] mx-auto
-              px-3 pr-4 
+              px-3 pr-4
               md:w-[min(300px,92vw)] md:mx-0 md:px-3 md:pr-3
             "
           >
@@ -70,7 +80,6 @@ export function Header() {
                 Skyvolt Solar
               </span>
             </div>
-
             <span className="grid size-10 place-items-center rounded-full border border-white/10 bg-white/8">
               <svg width="22" height="22" viewBox="0 0 24 24" aria-hidden="true">
                 <path d="M3 6 H21"  stroke="#ff6a00" strokeWidth="2" strokeLinecap="round" />
@@ -82,7 +91,7 @@ export function Header() {
         </nav>
       </div>
 
-      {/* Glass menu (full-width feel on mobile, card on md+) */}
+      {/* Drawer: full-screen on mobile; compact LEFT card on md+ */}
       <AnimatePresence>
         {isOpen && (
           <>
@@ -94,13 +103,16 @@ export function Header() {
               exit={{ opacity: 0 }}
               onClick={() => setIsOpen(false)}
             />
+
             <motion.aside
               key="panel"
               className="
-                fixed inset-x-4 top-4 z-[80] mx-auto
-                w-auto rounded-3xl bg-white/10 ring-1 ring-white/10 backdrop-blur-2xl
-                md:left-6 md:top-6 md:inset-x-auto md:mx-0
+                fixed z-[80]
+                inset-0                         /* mobile: full-screen */
+                md:inset-auto md:left-6 md:top-6 /* desktop: small card at left */
                 md:w-[min(92vw,420px)]
+                rounded-none md:rounded-3xl
+                bg-white/10 ring-1 ring-white/10 backdrop-blur-2xl
               "
               style={{ transformOrigin: "48px 48px" }}
               initial={{ opacity: 0, y: -8, scale: 0.98 }}
@@ -109,10 +121,12 @@ export function Header() {
               transition={{ duration: 0.22, ease: "easeOut" }}
             >
               <div className="flex items-center justify-between px-5 py-4">
-                <div className="flex items-center gap-2 text-white">
-                  <img src={logo} alt="Skyvolt Solar" className="h-8 w-8 md:h-10 md:w-10 object-contain" />
-                  <span className="font-bernier text-[18px] md:text-[22px] text-[#ff6a00] pl-1">Skyvolt Solar</span>
-                </div>
+                <Link to="/" onClick={() => setIsOpen(false)} className="flex items-center gap-2 text-white">
+                  <img src={logo} alt="Skyvolt Solar" className="h-8 w-8 object-contain" />
+                  <span className="font-bernier text-[18px] tracking-[.06em] text-[#ff6a00] pl-1">
+                    Skyvolt Solar
+                  </span>
+                </Link>
                 <button
                   aria-label="Close menu"
                   onClick={() => setIsOpen(false)}
@@ -137,6 +151,42 @@ export function Header() {
                     </a>
                   </motion.li>
                 ))}
+
+                {/* Actions */}
+                <motion.li variants={itemVariants} className="mt-2 grid grid-cols-2 gap-2">
+                  <Link
+                    to="/contact"
+                    onClick={() => setIsOpen(false)}
+                    className="col-span-2 rounded-xl bg-brand-600 px-4 py-3 text-center font-semibold hover:bg-brand-700"
+                  >
+                    Contact
+                  </Link>
+                  <a
+                    href={LOGIN_URL}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="rounded-xl border border-white/15 bg-white/5 px-4 py-3 text-center hover:bg-white/10"
+                    onClick={() => setIsOpen(false)}
+                  >
+                    Login
+                  </a>
+                  <a
+                    href={PROFILE_URL}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="rounded-xl border border-white/15 bg-white/5 px-4 py-3 text-center hover:bg-white/10"
+                    onClick={() => setIsOpen(false)}
+                  >
+                    Company Profile
+                  </a>
+                  <Link
+                    to={DEMO_URL}
+                    onClick={() => setIsOpen(false)}
+                    className="col-span-2 rounded-xl border border-brand-600/40 bg-brand-600/10 px-4 py-3 text-center text-brand-300 hover:bg-brand-600/15"
+                  >
+                    Demo
+                  </Link>
+                </motion.li>
               </motion.ul>
             </motion.aside>
           </>

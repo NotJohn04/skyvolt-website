@@ -2,7 +2,11 @@
 import { Button } from "./ui/button";
 import { ArrowRight, CheckCircle } from "lucide-react";
 import { BackgroundGradientAnimation } from "./ui/background-gradient-animation";
+import { Link } from "react-router-dom";
+import companyProfile from "../../public/Skyvolt Solar - Company Profile.pdf";
 
+const CONTACT_URL = "/contact";
+const PROFILE_URL = companyProfile;
 export function CTA() {
   return (
     <section id="contact" className="relative isolate overflow-hidden bg-transparent py-16 sm:py-20">
@@ -25,11 +29,11 @@ export function CTA() {
 
           <div className="flex flex-col sm:flex-row gap-4 justify-center mb-10">
             <Button size="lg" className="bg-white text-brand-600 hover:bg-white/90 group">
-              Schedule Free Consultation
+              <Link to={CONTACT_URL}>Schedule Free Consultation</Link>
               <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" />
             </Button>
             <Button size="lg" variant="outline" className="border-2 border-white text-white hover:bg-white/10">
-              Download Solar Marketing Guide
+              <a href={PROFILE_URL} target="_blank" rel="noopener noreferrer">See Company Profile</a>
             </Button>
           </div>
 

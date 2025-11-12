@@ -5,6 +5,8 @@ import Aurora from "./gradients/Aurora";
 import Spotlight from "./gradients/Spotlight";
 import Image from "./images/hero.png";
 import { Cover } from "./ui/cover";
+import { Link } from "react-router-dom";
+import companyProfile from "../../public/Skyvolt Solar - Company Profile.pdf";
 
 export function Hero() {
   return (
@@ -32,9 +34,11 @@ export function Hero() {
           </p>
 
           <div className="mt-8 flex flex-wrap items-center gap-3">
-            <Button className="bg-brand-600 hover:bg-brand-700">Get a demo</Button>
+            <Button className="bg-brand-600 hover:bg-brand-700 text-white" asChild>
+              <Link to="/contact">Book a Free Consultation</Link>
+            </Button>
             <Button variant="outline" className="border-white/20 bg-white/5 text-white hover:bg-white/10">
-              See case studies
+              <a href={companyProfile} target="_blank" rel="noopener noreferrer">See Company Profile</a>
             </Button>
           </div>
 

@@ -1,8 +1,13 @@
 import { Button } from "./ui/button";
+import { Link } from "react-router-dom";
+import companyProfile from "../../public/Skyvolt Solar - Company Profile.pdf";
+
 
 const LOOM_ID = "170782578db743208b9a34d6020eb9a4";
 const LOOM_SHARE = `https://www.loom.com/share/${LOOM_ID}`;
 const LOOM_EMBED = `https://www.loom.com/embed/${LOOM_ID}`;
+const PROFILE_URL = companyProfile;
+
 
 export function About() {
   return (
@@ -55,18 +60,18 @@ export function About() {
 
           {/* CTAs */}
           <div className="mt-6 flex items-center justify-center gap-3">
-            <a href="#contact">
+            <a href="/contact">
               <Button size="lg" className="bg-white text-brand-600 hover:bg-white/90">
-                Schedule Free Consultation
+                Contact Us
               </Button>
             </a>
-            <a href="#results">
+            <a href={PROFILE_URL} target="_blank" rel="noopener noreferrer">
               <Button
                 size="lg"
                 variant="outline"
                 className="border-2 border-white text-white hover:bg-white/10"
               >
-                See Case Studies
+                See Company Profile
               </Button>
             </a>
           </div>

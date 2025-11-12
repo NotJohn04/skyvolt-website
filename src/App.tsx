@@ -20,12 +20,19 @@ import IPS from "./components/partners/logo_footer.png"
 import "./styles/fonts.css";
 import { Analytics } from '@vercel/analytics/react';
 
+import ScrollToHash from "./components/ScrollToHash";
+
+
+
 
 export default function App() {
   return (
     <div className="min-h-screen bg-background text-foreground">
 
       <Header />
+      <ScrollToHash />
+
+
       <Hero />
       <LogoTicker
         logos={[
